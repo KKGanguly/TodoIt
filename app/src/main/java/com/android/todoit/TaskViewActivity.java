@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TaskViewActivity extends AppCompatActivity {
@@ -28,6 +31,25 @@ public class TaskViewActivity extends AppCompatActivity {
         }
         listView.setAdapter(new CustomAdapter(taskListItems,this.getApplicationContext()));
     }
+    private List<TaskListItem> getGroups(List<Task> tasks){
+        TaskListItem taskListItem;
+        for (Task task: tasks){
+            taskListItem=new TaskListItem(task, false, "");
+            Date date= getStringToDate(task.getDate());
+            
+        }
+    }
 
+    private Date getStringToDate(String dateText){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        try {
+            Date date = format.parse(dateText);
+            System.out.println(date);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
