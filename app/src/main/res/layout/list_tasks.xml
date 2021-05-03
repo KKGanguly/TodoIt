@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:id="@+id/listTasks"
+    android:id="@+id/listTasksLayout"
     android:background="@color/background_color">
     <RadioButton
         android:id="@+id/done"

@@ -67,19 +67,21 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="8dp"
-            android:paddingBottom="5dp">
+            android:padding="10dp"
+            android:layout_marginTop="20dp">
 
             <EditText
                 android:id="@+id/start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/start_time"
+                android:hint="@string/start_time"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:background="@android:color/transparent"
+                android:textSize="16sp"
                 android:inputType="none"
-                android:focusable="false"
-                android:textSize="14sp"/>
+                android:focusable="false"/>
 
             <EditText
                 android:id="@+id/end_time"
@@ -89,17 +91,33 @@
                 android:gravity="end"
                 android:text="@string/end_time"
                 android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:background="@android:color/transparent"
+                android:textSize="16sp"
                 android:inputType="none"
-                android:focusable="false"
-                android:textSize="14sp" />
+                android:focusable="false"/>
         </LinearLayout>
-
+        <EditText
+            android:id="@+id/startDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/start_date"
+            android:inputType="none"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
+            android:focusable="false"/>
         <Button
             android:id="@+id/addTask"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:padding="3dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:text="@string/add"
             android:textColor="#009688"
             android:textSize="17sp"

@@ -17,8 +17,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TASK_COLUMN_DESC = "taskDescription";
     public static final String TASK_COLUMN_STARTTME = "startTime";
     public static final String TASK_COLUMN_ENDTIME = "endTime";
+    public static final String TASK_COLUMN_ISDONE = "isDone";
+    public static final String TASK_COLUMN_DATE = "date";
     public static final String TASK_CREATE_TABLE = "create table " + TASK_TABLE_NAME +
-            "(" + TASK_COLUMN_ID + " integer primary key autoincrement," + TASK_COLUMN_NAME + " text," + TASK_COLUMN_DESC + " text," + TASK_COLUMN_STARTTME + " text," + TASK_COLUMN_ENDTIME + " text)";
+            "(" + TASK_COLUMN_ID + " integer primary key autoincrement," + TASK_COLUMN_NAME + " text," + TASK_COLUMN_DESC + " text," + TASK_COLUMN_ISDONE+" integer default 0,"+TASK_COLUMN_DATE + " text," +TASK_COLUMN_STARTTME + " text," + TASK_COLUMN_ENDTIME + " text)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -41,7 +43,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TASK_COLUMN_NAME, task.getTaskName());
         contentValues.put(TASK_COLUMN_DESC, task.getTaskDescription());
         contentValues.put(TASK_COLUMN_STARTTME, task.getStartTime());
+        contentValues.put(TASK_COLUMN_ISDONE, task.isDone()?1:0);
         contentValues.put(TASK_COLUMN_ENDTIME, task.getEndTime());
+        contentValues.put(TASK_COLUMN_DATE, task.getDate());
         db.insert(TASK_TABLE_NAME, null, contentValues);
     }
 
@@ -53,8 +57,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String name = cursor.getString(cursor.getColumnIndex(TASK_COLUMN_NAME));
             String desc = cursor.getString(cursor.getColumnIndex(TASK_COLUMN_DESC));
             String start = cursor.getString(cursor.getColumnIndex(TASK_COLUMN_STARTTME));
+            int isDone = cursor.getInt(cursor.getColumnIndex(TASK_COLUMN_ISDONE));
             String end = cursor.getString(cursor.getColumnIndex(TASK_COLUMN_ENDTIME));
-            tasks.add(new Task(name, desc, start,end));
+            String date = cursor.getString(cursor.getColumnIndex(TASK_COLUMN_DATE));
+            tasks.add(new Task(name, desc, start,isDone, end,date));
         }
 
         return tasks;

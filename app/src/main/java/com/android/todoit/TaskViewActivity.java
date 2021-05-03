@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskViewActivity extends AppCompatActivity {
@@ -18,6 +19,15 @@ public class TaskViewActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this.getApplicationContext());
         listView=(ListView)findViewById(R.id.listTasks);
         List<Task> tasks = databaseHelper.getAllTasks();
-        listView.setAdapter(new CustomAdapter(tasks,this.getApplicationContext()));
+        List<TaskListItem> taskListItems=new ArrayList<>();
+        TaskListItem taskListItem=new TaskListItem(null, true, "test");
+        taskListItems.add(taskListItem);
+        for (Task task: tasks){
+            taskListItem=new TaskListItem(task, false, "");
+            taskListItems.add(taskListItem);
+        }
+        listView.setAdapter(new CustomAdapter(taskListItems,this.getApplicationContext()));
     }
+
+
 }
